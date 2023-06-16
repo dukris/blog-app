@@ -11,5 +11,5 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
-      - uses: g4s8/xcop-action@master
       - run: xcop --fix pom.xml
+      - uses: g4s8/xcop-action@master
