@@ -42,10 +42,9 @@ public final class NeoUsers implements Users {
     public User add(final User user) {
         try (Session session = driver.session()) {
             Query query = new Query(
-                    "CREATE (user:User {id:$id, name:$name, email:$email}) "
+                    "CREATE (user:User {name:$name, email:$email}) "
                             + "RETURN user",
-                    Map.of("id", user.id(),
-                            "name", user.name(),
+                    Map.of("name", user.name(),
                             "email", user.email()
                     )
             );
