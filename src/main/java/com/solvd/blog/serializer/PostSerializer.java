@@ -10,7 +10,11 @@ import java.io.IOException;
 public class PostSerializer extends JsonSerializer<NeoPost> {
 
     @Override
-    public void serialize(NeoPost value, JsonGenerator gen, SerializerProvider serializers) throws IOException {
+    public void serialize(
+            final NeoPost value,
+            final JsonGenerator gen,
+            final SerializerProvider serializers
+    ) throws IOException {
         gen.writeStartObject();
         gen.writeNumberField("id", value.id());
         gen.writeStringField("title", value.title());

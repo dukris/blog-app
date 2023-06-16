@@ -22,19 +22,19 @@ public final class UserController {
     }
 
     @GetMapping("/{id}")
-    public User user(@PathVariable Long id) {
+    public User user(@PathVariable final Long id) {
         return this.users.user(id);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public User create(@RequestBody RqUser user) {
+    public User create(@RequestBody final RqUser user) {
         return this.users.add(user);
     }
 
     @PutMapping("/{id}")
-    public User update(@PathVariable Long id,
-                       @RequestBody RqUser user) {
+    public User update(@PathVariable final Long id,
+                       @RequestBody final RqUser user) {
         return this.users.update(user);
     }
 

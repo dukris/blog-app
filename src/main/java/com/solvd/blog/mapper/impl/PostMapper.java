@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 public class PostMapper implements Mapper<Post> {
 
     @Override
-    public Post toEntity(Record record) {
+    public Post toEntity(final Record record) {
         Node node = record.get("post").asNode();
         return new NeoPost(
                 node.get("id").asLong(),

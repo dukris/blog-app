@@ -28,7 +28,7 @@ public final class NeoUsers implements Users {
     }
 
     @Override
-    public User user(Long id) {
+    public User user(final Long id) {
         try (Session session = driver.session()) {
             Query query = new Query(
                     "MATCH (user:User) WHERE user.id=$id RETURN user",
@@ -39,10 +39,11 @@ public final class NeoUsers implements Users {
     }
 
     @Override
-    public User add(User user) {
+    public User add(final User user) {
         try (Session session = driver.session()) {
             Query query = new Query(
-                    "CREATE (user:User {id:$id, name:$name, email:$email}) RETURN user",
+                    "CREATE (user:User {id:$id, name:$name, email:$email}) "
+                            + "RETURN user",
                     Map.of("id", user.id(),
                             "name", user.name(),
                             "email", user.email()
@@ -53,10 +54,11 @@ public final class NeoUsers implements Users {
     }
 
     @Override
-    public User update(User user) {
+    public User update(final User user) {
         try (Session session = driver.session()) {
             Query query = new Query(
-                    "MATCH (user:User {id:$id}) SET user.name=$name RETURN user",
+                    "MATCH (user:User {id:$id}) SET user.name=$name "
+                            + "RETURN user",
                     Map.of("id", user.id(),
                             "name", user.name()
                     )

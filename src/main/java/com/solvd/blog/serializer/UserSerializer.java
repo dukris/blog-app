@@ -10,7 +10,11 @@ import java.io.IOException;
 public class UserSerializer extends JsonSerializer<NeoUser> {
 
     @Override
-    public void serialize(NeoUser value, JsonGenerator gen, SerializerProvider serializers) throws IOException {
+    public void serialize(
+            final NeoUser value,
+            final JsonGenerator gen,
+            final SerializerProvider serializers
+    ) throws IOException {
         gen.writeStartObject();
         gen.writeNumberField("id", value.id());
         gen.writeStringField("name", value.name());

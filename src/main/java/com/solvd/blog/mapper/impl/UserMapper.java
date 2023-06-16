@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class UserMapper implements Mapper<User> {
 
     @Override
-    public User toEntity(Record record) {
+    public User toEntity(final Record record) {
         Node node = record.get("user").asNode();
         return new NeoUser(
                 node.get("id").asLong(),
