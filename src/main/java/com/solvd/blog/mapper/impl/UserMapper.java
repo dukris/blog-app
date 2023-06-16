@@ -16,7 +16,7 @@ public class UserMapper implements Mapper<User> {
     public User toEntity(final Record record) {
         Node node = record.get("user").asNode();
         return new NeoUser(
-                node.get("id").asLong(),
+                node.elementId(),
                 node.get("name").asString(),
                 node.get("email").asString(),
                 new ArrayList<>()

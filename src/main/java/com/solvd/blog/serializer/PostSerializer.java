@@ -16,7 +16,7 @@ public class PostSerializer extends JsonSerializer<NeoPost> {
             final SerializerProvider serializers
     ) throws IOException {
         gen.writeStartObject();
-        gen.writeNumberField("id", value.id());
+        gen.writeStringField("id", value.id());
         gen.writeStringField("title", value.title());
         gen.writeStringField("content", value.content());
         gen.writeObjectField("date", value.date());

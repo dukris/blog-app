@@ -11,13 +11,13 @@ import java.time.LocalDate;
 @JsonSerialize(using = PostSerializer.class)
 public final class NeoPost implements Post {
 
-    private final Long id;
+    private final String id;
     private final String title;
     private final String content;
     private final LocalDate date;
 
     @Override
-    public Long id() {
+    public String id() {
         return this.id;
     }
 
