@@ -10,11 +10,12 @@
 	</parent>
 	<groupId>com.solvd</groupId>
 	<artifactId>blog</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>${eokson.version}-SNAPSHOT</version>
 	<name>blog</name>
 	<description>Service for writing blogs</description>
 	<properties>
 		<java.version>17</java.version>
+		<eokson.version>0.0.1</eokson.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -29,6 +30,11 @@
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>io.github.eo-cqrs</groupId>
+			<artifactId>eokson</artifactId>
+			<version>${eokson.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
