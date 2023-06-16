@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface User {
 
-    Long id();
+    String id();
 
     String name();
 
