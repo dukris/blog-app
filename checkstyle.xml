@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<!--Copyright (c) 2023 Letsrally.com-->
+<!--Copyright (c) 2023 Hanna Izmailovich-->
 <!DOCTYPE module PUBLIC "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN" "https://checkstyle.org/dtds/configuration_1_3.dtd">
 <module name="Checker">
   <module name="LineLength">
