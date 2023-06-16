@@ -32,4 +32,10 @@ public final class UserController {
         return this.users.add(user);
     }
 
+    @PutMapping("/{id}")
+    public User update(@PathVariable Long id,
+                       @RequestBody RqUser user) {
+        return this.users.update(user);
+    }
+
 }
