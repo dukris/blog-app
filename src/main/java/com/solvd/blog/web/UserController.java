@@ -31,12 +31,14 @@ public final class UserController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public User create(@RequestBody @Validated(OnCreate.class) final RqUser user) {
+    public User create(@RequestBody
+                       @Validated(OnCreate.class) final RqUser user) {
         return this.users.add(user);
     }
 
     @PutMapping
-    public User update(@RequestBody @Validated(OnUpdate.class) final RqUser user) {
+    public User update(@RequestBody
+                       @Validated(OnUpdate.class) final RqUser user) {
         return this.users.update(user);
     }
 
