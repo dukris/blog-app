@@ -9,7 +9,7 @@
 		<relativePath/>
 	</parent>
 	<groupId>com.solvd</groupId>
-	<artifactId>movie</artifactId>
+	<artifactId>blog</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>blog</name>
 	<properties>
