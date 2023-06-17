@@ -31,7 +31,7 @@ public final class NeoUsers implements Users {
     public User user(final Long id) {
         try (Session session = driver.session()) {
             Query query = new Query(
-                    "MATCH (user:User) WHERE user.id=$id RETURN user",
+                    "MATCH (user:User) WHERE ID(user)=$id RETURN user",
                     Map.of("id", id)
             );
             return this.mapper.toEntity(session.run(query).single());
@@ -56,7 +56,7 @@ public final class NeoUsers implements Users {
     public User update(final User user) {
         try (Session session = driver.session()) {
             Query query = new Query(
-                    "MATCH (user:User {id:$id}) SET user.name=$name "
+                    "MATCH (user:User) WHERE ID(user)=$id SET user.name=$name "
                             + "RETURN user",
                     Map.of("id", user.id(),
                             "name", user.name()
