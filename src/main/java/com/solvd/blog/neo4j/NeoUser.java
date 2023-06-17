@@ -12,13 +12,13 @@ import java.util.List;
 @JsonSerialize(using = UserSerializer.class)
 public final class NeoUser implements User {
 
-    private final String id;
+    private final Long id;
     private final String name;
     private final String email;
     private final List<Post> posts;
 
     @Override
-    public String id() {
+    public Long id() {
         return this.id;
     }
 

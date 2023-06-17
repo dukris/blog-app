@@ -14,7 +14,7 @@ public class PostMapper implements Mapper<Post> {
     public Post toEntity(final Record record) {
         Node node = record.get("post").asNode();
         return new NeoPost(
-                node.elementId(),
+                node.id(),
                 node.get("title").asString(),
                 node.get("content").asString(),
                 node.get("date").asLocalDate()

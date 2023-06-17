@@ -8,18 +8,20 @@ import org.neo4j.driver.Driver;
 import org.neo4j.driver.Query;
 import org.neo4j.driver.Session;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
 
 @Component
 @RequiredArgsConstructor
-public final class NeoUsers implements Users {
+public class NeoUsers implements Users {
 
     private final Driver driver;
     private final UserMapper mapper;
 
     @Override
+    @Transactional(readOnly = true)
     public List<User> iterate() {
         try (Session session = driver.session()) {
             return session.run("MATCH (user:User) RETURN user")
@@ -28,10 +30,11 @@ public final class NeoUsers implements Users {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public User user(final Long id) {
         try (Session session = driver.session()) {
             Query query = new Query(
-                    "MATCH (user:User) WHERE user.id=$id RETURN user",
+                    "MATCH (user:User) WHERE ID(user)=$id RETURN user",
                     Map.of("id", id)
             );
             return this.mapper.toEntity(session.run(query).single());
@@ -39,13 +42,13 @@ public final class NeoUsers implements Users {
     }
 
     @Override
+    @Transactional
     public User add(final User user) {
         try (Session session = driver.session()) {
             Query query = new Query(
-                    "CREATE (user:User {id:$id, name:$name, email:$email}) "
+                    "CREATE (user:User {name:$name, email:$email}) "
                             + "RETURN user",
-                    Map.of("id", user.id(),
-                            "name", user.name(),
+                    Map.of("name", user.name(),
                             "email", user.email()
                     )
             );
@@ -54,10 +57,11 @@ public final class NeoUsers implements Users {
     }
 
     @Override
+    @Transactional
     public User update(final User user) {
         try (Session session = driver.session()) {
             Query query = new Query(
-                    "MATCH (user:User {id:$id}) SET user.name=$name "
+                    "MATCH (user:User) WHERE ID(user)=$id SET user.name=$name "
                             + "RETURN user",
                     Map.of("id", user.id(),
                             "name", user.name()

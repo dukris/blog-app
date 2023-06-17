@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public interface Post {
 
-    String id();
+    Long id();
 
     String title();
 
