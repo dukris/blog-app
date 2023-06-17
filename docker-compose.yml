@@ -12,15 +12,15 @@ services:
       - blog
     environment:
       NEO4J_AUTH: ${NEO4J_USERNAME}/${NEO4J_PASSWORD}
-  app:
-    build: .
-    container_name: blog
-    ports:
-      - 8080:8080
-    networks:
-      - blog
-    env_file:
-      - .env
+#  app:
+#    build: .
+#    container_name: blog
+#    ports:
+#      - 8080:8080
+#    networks:
+#      - blog
+#    env_file:
+#      - .env
 volumes:
   neo4j-data:
     driver: local
