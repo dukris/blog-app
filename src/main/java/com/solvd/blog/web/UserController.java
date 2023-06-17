@@ -36,7 +36,7 @@ public final class UserController {
         return this.users.add(user);
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     public User update(@RequestBody
                        @Validated(OnUpdate.class) final RqUser user) {
         return this.users.update(user);

@@ -5,6 +5,7 @@ import com.solvd.blog.group.OnCreate;
 import com.solvd.blog.group.OnUpdate;
 import com.solvd.blog.model.Post;
 import com.solvd.blog.model.User;
+
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Null;
 import lombok.AllArgsConstructor;
@@ -16,7 +17,7 @@ public class RqUser implements User {
 
     @Null(groups = OnCreate.class, message = "Id should be empty!")
     @NotNull(groups = OnUpdate.class, message = "Id should be filled!")
-    private final String id;
+    private final Long id;
     private final String name;
     private final String email;
 
@@ -24,7 +25,7 @@ public class RqUser implements User {
     private final List<Post> posts;
 
     @Override
-    public String id() {
+    public Long id() {
         return this.id;
     }
 
