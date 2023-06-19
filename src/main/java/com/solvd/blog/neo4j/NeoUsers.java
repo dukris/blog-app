@@ -8,7 +8,6 @@ import org.neo4j.driver.Driver;
 import org.neo4j.driver.Query;
 import org.neo4j.driver.Session;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
