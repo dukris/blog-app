@@ -25,19 +25,19 @@ public class TxUsers implements Users {
 
     @Override
     @Transactional(readOnly = true)
-    public User user(Long id) {
+    public User user(final Long id) {
         return this.users.user(id);
     }
 
     @Override
     @Transactional
-    public User add(User user) {
+    public User add(final User user) {
         return this.users.add(user);
     }
 
     @Override
     @Transactional
-    public User update(User user) {
+    public User update(final User user) {
         return this.users.update(user);
     }
 
