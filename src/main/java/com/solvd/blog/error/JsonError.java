@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 @JsonSerialize(using = ErrorSerializer.class)
-public final class JsonError implements Error{
+public final class JsonError implements Error {
 
     private final String message;
 

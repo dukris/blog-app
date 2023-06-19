@@ -29,6 +29,12 @@ public final class UserController {
     private final Users users;
     private final Posts posts;
 
+    /**
+     * Constructor.
+     *
+     * @param users TxUsers
+     * @param posts TxPosts
+     */
     public UserController(
             @Qualifier("txUsers") final Users users,
             @Qualifier("txPosts") final Posts posts
@@ -37,16 +43,33 @@ public final class UserController {
         this.posts = posts;
     }
 
+    /**
+     * Get all users.
+     *
+     * @return List of users
+     */
     @GetMapping
     public List<User> iterate() {
         return this.users.iterate();
     }
 
+    /**
+     * Get user by id.
+     *
+     * @param id is
+     * @return User
+     */
     @GetMapping("/{id}")
     public User user(@PathVariable final Long id) {
         return this.users.user(id);
     }
 
+    /**
+     * Create new user.
+     *
+     * @param user RqUser
+     * @return User
+     */
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public User create(@RequestBody
@@ -54,12 +77,25 @@ public final class UserController {
         return this.users.add(user);
     }
 
+    /**
+     * Update user.
+     *
+     * @param user RqUser
+     * @return User
+     */
     @PutMapping("/{id}")
     public User update(@RequestBody
                        @Validated(OnUpdate.class) final RqUser user) {
         return this.users.update(user);
     }
 
+    /**
+     * Add new post.
+     *
+     * @param id id
+     * @param request RqPost
+     * @return Post
+     */
     @PostMapping("/{id}/posts")
     public Post addPost(
             @PathVariable final Long id,
@@ -68,6 +104,12 @@ public final class UserController {
         return this.posts.add(request, id);
     }
 
+    /**
+     * Get posts be user's id.
+     *
+     * @param id id
+     * @return List of posts
+     */
     @GetMapping("/{id}/posts")
     public List<Post> posts(
             @PathVariable final Long id

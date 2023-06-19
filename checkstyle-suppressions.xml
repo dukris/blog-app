@@ -5,4 +5,8 @@
   <suppress checks="LineLength" files=".*\.java$" lines="0-23"/>
   <suppress checks="HiddenField" files=".*\.java$" lines="23-9999"/>
   <suppress checks="JavadocPackage" files=".*\.java$"/>
+  <suppress checks="JavadocVariable" files=".*\.java$"/>
+  <suppress checks="HiddenField" files=".*\.java$"/>
+  <suppress checks="HideUtilityClassConstructor" files=".*\.java$"/>
+  <suppress checks="DesignForExtension" files=".*\.java$"/>
 </suppressions>

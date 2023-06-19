@@ -17,6 +17,12 @@ import java.util.List;
 @RestControllerAdvice
 public class ControllerAdvice {
 
+    /**
+     * Method to handle NoSuchRecordException.
+     *
+     * @param ex NoSuchRecordException
+     * @return error
+     */
     @ExceptionHandler(NoSuchRecordException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public Error handle(
@@ -26,6 +32,12 @@ public class ControllerAdvice {
         );
     }
 
+    /**
+     * Method to handle MethodArgumentNotValidException.
+     *
+     * @param ex MethodArgumentNotValidException
+     * @return error
+     */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public List<Error> handle(
@@ -39,6 +51,12 @@ public class ControllerAdvice {
         return errors;
     }
 
+    /**
+     * Method to handle Exception.
+     *
+     * @param ex Exception
+     * @return error
+     */
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public JsonError handle(final Exception ex) {

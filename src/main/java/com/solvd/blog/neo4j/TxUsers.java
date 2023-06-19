@@ -13,6 +13,11 @@ public class TxUsers implements Users {
 
     private final Users users;
 
+    /**
+     * Constructor.
+     *
+     * @param users Users
+     */
     public TxUsers(@Qualifier("neoUsers") final Users users) {
         this.users = users;
     }

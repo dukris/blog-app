@@ -20,15 +20,31 @@ public class PostController {
 
     private final Posts posts;
 
+    /**
+     * Constructor.
+     *
+     * @param posts TxPosts
+     */
     public PostController(@Qualifier("txPosts") final Posts posts) {
         this.posts = posts;
     }
 
+    /**
+     * Get post by id.
+     *
+     * @param id id
+     * @return Post
+     */
     @GetMapping("/{id}")
     public Post post(@PathVariable final Long id) {
         return this.posts.post(id);
     }
 
+    /**
+     * Get all posts.
+     *
+     * @return List of posts
+     */
     @GetMapping
     public List<Post> iterate() {
         return this.posts.iterate();
