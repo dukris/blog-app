@@ -9,6 +9,7 @@ import org.neo4j.driver.Query;
 import org.neo4j.driver.Session;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
@@ -40,7 +41,7 @@ public class NeoPosts implements Posts {
                                     Map.of(
                                             "title", post.title(),
                                             "content", post.content(),
-                                            "date", post.date(),
+                                            "date", LocalDate.now(),
                                             "user", user
                                     )
                             )
