@@ -51,16 +51,36 @@ public class NeoPosts implements Posts {
 
     @Override
     public Post post(final Long id) {
-        throw new UnsupportedOperationException("#post()");
+        try (final Session session = this.driver.session()) {
+            return this.mapper.toEntity(
+                    session.run(
+                            new Query(
+                                    "MATCH (p:Post) WHERE ID(p)=$id RETURN p ",
+                                    Map.of("id", id)
+                            )
+                    ).single()
+            );
+        }
     }
 
     @Override
     public List<Post> iterate(final Long user) {
-        throw new UnsupportedOperationException("#iterate()");
+        try (final Session session = this.driver.session()) {
+            return session.run(
+                    new Query(
+                            "MATCH (p:Post)-[r:MAINTAINED]->(u:User)"
+                                    + " WHERE ID(u)=$user RETURN p",
+                            Map.of("user", user)
+                    )
+            ).list(this.mapper::toEntity);
+        }
     }
 
     @Override
     public List<Post> iterate() {
-        throw new UnsupportedOperationException("#iterate()");
+        try (final Session session = this.driver.session()) {
+            return session.run(new Query("MATCH (p:Post) RETURN p"))
+                    .list(this.mapper::toEntity);
+        }
     }
 }
