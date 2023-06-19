@@ -15,7 +15,7 @@ import java.util.List;
 
 @Slf4j
 @RestControllerAdvice
-public class BlogControllerAdvice {
+public class ControllerAdvice {
 
     @ExceptionHandler(NoSuchRecordException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
