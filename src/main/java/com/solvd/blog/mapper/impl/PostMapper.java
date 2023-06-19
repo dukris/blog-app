@@ -12,7 +12,7 @@ public class PostMapper implements Mapper<Post> {
 
     @Override
     public Post toEntity(final Record record) {
-        Node node = record.get("post").asNode();
+        Node node = record.get("p").asNode();
         return new NeoPost(
                 node.id(),
                 node.get("title").asString(),

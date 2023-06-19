@@ -2,22 +2,40 @@ package com.solvd.blog.web;
 
 import com.solvd.blog.group.OnCreate;
 import com.solvd.blog.group.OnUpdate;
+import com.solvd.blog.model.Post;
+import com.solvd.blog.model.Posts;
 import com.solvd.blog.model.User;
 import com.solvd.blog.model.Users;
+import com.solvd.blog.request.RqPost;
 import com.solvd.blog.request.RqUser;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
-@RequiredArgsConstructor
 @RequestMapping("/api/v1/users")
 public final class UserController {
 
     private final Users users;
+    private final Posts posts;
+
+    public UserController(
+            final Users users,
+            @Qualifier("txPosts") final Posts posts
+    ) {
+        this.users = users;
+        this.posts = posts;
+    }
 
     @GetMapping
     public List<User> iterate() {
@@ -40,6 +58,14 @@ public final class UserController {
     public User update(@RequestBody
                        @Validated(OnUpdate.class) final RqUser user) {
         return this.users.update(user);
+    }
+
+    @PostMapping("/{id}/posts")
+    public Post addPost(
+            @PathVariable final Long id,
+            @RequestBody final RqPost request
+    ) {
+        return this.posts.add(request, id);
     }
 
 }

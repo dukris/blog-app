@@ -5,7 +5,6 @@ import com.solvd.blog.group.OnCreate;
 import com.solvd.blog.group.OnUpdate;
 import com.solvd.blog.model.Post;
 import com.solvd.blog.model.User;
-
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Null;
 import lombok.AllArgsConstructor;
