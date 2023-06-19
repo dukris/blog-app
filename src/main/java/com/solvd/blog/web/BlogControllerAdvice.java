@@ -41,7 +41,7 @@ public class BlogControllerAdvice {
 
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public JsonError handleOtherExceptions(final Exception ex) {
+    public JsonError handle(final Exception ex) {
         log.error(ex.getMessage(), ex);
         return new JsonError("Please, try later!");
     }
