@@ -68,4 +68,11 @@ public final class UserController {
         return this.posts.add(request, id);
     }
 
+    @GetMapping("/{id}/posts")
+    public List<Post> posts(
+            @PathVariable final Long id
+    ) {
+        return this.posts.iterate(id);
+    }
+
 }
