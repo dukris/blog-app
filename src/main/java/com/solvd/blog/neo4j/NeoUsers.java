@@ -21,7 +21,6 @@ public class NeoUsers implements Users {
     private final UserMapper mapper;
 
     @Override
-    @Transactional(readOnly = true)
     public List<User> iterate() {
         try (Session session = driver.session()) {
             return session.run("MATCH (user:User) RETURN user")
@@ -30,7 +29,6 @@ public class NeoUsers implements Users {
     }
 
     @Override
-    @Transactional(readOnly = true)
     public User user(final Long id) {
         try (Session session = driver.session()) {
             Query query = new Query(
@@ -42,7 +40,6 @@ public class NeoUsers implements Users {
     }
 
     @Override
-    @Transactional
     public User add(final User user) {
         try (Session session = driver.session()) {
             Query query = new Query(
@@ -57,7 +54,6 @@ public class NeoUsers implements Users {
     }
 
     @Override
-    @Transactional
     public User update(final User user) {
         try (Session session = driver.session()) {
             Query query = new Query(

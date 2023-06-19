@@ -30,7 +30,7 @@ public final class UserController {
     private final Posts posts;
 
     public UserController(
-            final Users users,
+            @Qualifier("txUsers") final Users users,
             @Qualifier("txPosts") final Posts posts
     ) {
         this.users = users;
