@@ -1,5 +1,6 @@
 package com.solvd.blog.request;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.solvd.blog.model.Post;
 import lombok.RequiredArgsConstructor;
 
@@ -12,9 +13,12 @@ import java.time.LocalDate;
 @RequiredArgsConstructor
 public final class RqPost implements Post {
 
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private final Long id;
     private final String title;
     private final String content;
+
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private final LocalDate date;
 
     @Override

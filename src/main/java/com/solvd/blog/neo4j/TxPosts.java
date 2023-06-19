@@ -2,7 +2,6 @@ package com.solvd.blog.neo4j;
 
 import com.solvd.blog.model.Post;
 import com.solvd.blog.model.Posts;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,6 +17,11 @@ public class TxPosts implements Posts {
 
     private final Posts posts;
 
+    /**
+     * Constructor.
+     *
+     * @param posts Posts
+     */
     public TxPosts(@Qualifier("neoPosts") final Posts posts) {
         this.posts = posts;
     }

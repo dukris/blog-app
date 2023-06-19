@@ -12,7 +12,7 @@ import lombok.AllArgsConstructor;
 import java.util.List;
 
 @AllArgsConstructor
-public class RqUser implements User {
+public final class RqUser implements User {
 
     @Null(groups = OnCreate.class, message = "Id should be empty!")
     @NotNull(groups = OnUpdate.class, message = "Id should be filled!")

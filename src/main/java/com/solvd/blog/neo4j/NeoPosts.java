@@ -9,6 +9,7 @@ import org.neo4j.driver.Query;
 import org.neo4j.driver.Session;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
@@ -25,7 +26,7 @@ public class NeoPosts implements Posts {
 
     @Override
     public Post add(final Post post, final Long user) {
-        try (final Session session = this.driver.session()) {
+        try (Session session = this.driver.session()) {
             return this.mapper.toEntity(
                     session.run(
                             new Query(
@@ -40,7 +41,7 @@ public class NeoPosts implements Posts {
                                     Map.of(
                                             "title", post.title(),
                                             "content", post.content(),
-                                            "date", post.date(),
+                                            "date", LocalDate.now(),
                                             "user", user
                                     )
                             )
@@ -51,7 +52,7 @@ public class NeoPosts implements Posts {
 
     @Override
     public Post post(final Long id) {
-        try (final Session session = this.driver.session()) {
+        try (Session session = this.driver.session()) {
             return this.mapper.toEntity(
                     session.run(
                             new Query(
@@ -65,7 +66,7 @@ public class NeoPosts implements Posts {
 
     @Override
     public List<Post> iterate(final Long user) {
-        try (final Session session = this.driver.session()) {
+        try (Session session = this.driver.session()) {
             return session.run(
                     new Query(
                             "MATCH (p:Post)-[r:MAINTAINED]->(u:User)"
@@ -78,7 +79,7 @@ public class NeoPosts implements Posts {
 
     @Override
     public List<Post> iterate() {
-        try (final Session session = this.driver.session()) {
+        try (Session session = this.driver.session()) {
             return session.run(new Query("MATCH (p:Post) RETURN p"))
                     .list(this.mapper::toEntity);
         }

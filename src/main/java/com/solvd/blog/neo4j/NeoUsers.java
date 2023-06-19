@@ -8,7 +8,6 @@ import org.neo4j.driver.Driver;
 import org.neo4j.driver.Query;
 import org.neo4j.driver.Session;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
@@ -21,7 +20,6 @@ public class NeoUsers implements Users {
     private final UserMapper mapper;
 
     @Override
-    @Transactional(readOnly = true)
     public List<User> iterate() {
         try (Session session = driver.session()) {
             return session.run("MATCH (user:User) RETURN user")
@@ -30,7 +28,6 @@ public class NeoUsers implements Users {
     }
 
     @Override
-    @Transactional(readOnly = true)
     public User user(final Long id) {
         try (Session session = driver.session()) {
             Query query = new Query(
@@ -42,7 +39,6 @@ public class NeoUsers implements Users {
     }
 
     @Override
-    @Transactional
     public User add(final User user) {
         try (Session session = driver.session()) {
             Query query = new Query(
@@ -57,7 +53,6 @@ public class NeoUsers implements Users {
     }
 
     @Override
-    @Transactional
     public User update(final User user) {
         try (Session session = driver.session()) {
             Query query = new Query(
