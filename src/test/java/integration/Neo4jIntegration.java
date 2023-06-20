@@ -28,7 +28,7 @@ public class Neo4jIntegration {
         container.start();
         try (Driver driver = GraphDatabase.driver(container.getBoltUrl());
              Session session = driver.session()) {
-            User user = new FkUser("Email");
+            User user = new FkUser("Name", "Email");
             Query query = new Query(
                     "CREATE (user:User {name:$name, email:$email})",
                     Map.of("name", user.name(),

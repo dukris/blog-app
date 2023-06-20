@@ -37,7 +37,7 @@ public class UsersIT extends Neo4jIntegration {
 
     @Test
     public void verifiesUser() {
-        User user = new FkUser("Email");
+        User user = new FkUser("Name", "Email");
         User result = this.users.user(user.id());
         Assertions.assertEquals(user.name(), result.name());
         Assertions.assertEquals(user.email(), result.email());
@@ -53,7 +53,7 @@ public class UsersIT extends Neo4jIntegration {
 
     @Test
     public void verifiesAdd() {
-        User user = new FkUser("New email");
+        User user = new FkUser("Name", "New email");
         User result = this.users.add(user);
         Assertions.assertEquals(user.name(), result.name());
         Assertions.assertEquals(user.email(), result.email());
@@ -63,13 +63,13 @@ public class UsersIT extends Neo4jIntegration {
     public void verifiesAddThrowsResourceAlreadyExistsException() {
         Assertions.assertThrows(
                 ResourceAlreadyExistsException.class,
-                () -> this.users.add(new FkUser("Email"))
+                () -> this.users.add(new FkUser("Name", "Email"))
         );
     }
 
     @Test
     public void verifiesUpdate() {
-        User expected = new FkUser("Updated email");
+        User expected = new FkUser("Updated name", "Email");
         User result = this.users.update(expected);
         Assertions.assertEquals(expected.name(), result.name());
         Assertions.assertEquals(expected.email(), result.email());

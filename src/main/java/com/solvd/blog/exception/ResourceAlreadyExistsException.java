@@ -1,8 +1,13 @@
 package com.solvd.blog.exception;
 
-public class ResourceAlreadyExistsException extends RuntimeException{
+public class ResourceAlreadyExistsException extends RuntimeException {
 
-    public ResourceAlreadyExistsException(String message) {
+    /**
+     * Constructor.
+     *
+     * @param message Message
+     */
+    public ResourceAlreadyExistsException(final String message) {
         super(message);
     }
 

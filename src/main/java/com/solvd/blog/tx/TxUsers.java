@@ -48,7 +48,7 @@ public class TxUsers implements Users {
 
     @Override
     @Transactional(readOnly = true)
-    public Boolean isExists(String email) {
+    public Boolean isExists(final String email) {
         return this.users.isExists(email);
     }
 

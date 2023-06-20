@@ -12,7 +12,7 @@ public class FkUser implements User {
 
     private static final Long ID = 0L;
     private static final List<Post> POSTS = new ArrayList<>();
-    private static final String NAME = "Name";
+    private final String name;
     private final String email;
 
     @Override
@@ -22,7 +22,7 @@ public class FkUser implements User {
 
     @Override
     public String name() {
-        return NAME;
+        return this.name;
     }
 
     @Override

@@ -18,7 +18,7 @@ public class UqUsers implements Users {
      *
      * @param users Users
      */
-    public UqUsers(@Qualifier("txUsers") Users users) {
+    public UqUsers(@Qualifier("txUsers") final Users users) {
         this.users = users;
     }
 
@@ -28,12 +28,12 @@ public class UqUsers implements Users {
     }
 
     @Override
-    public User user(Long id) {
+    public User user(final Long id) {
         return this.users.user(id);
     }
 
     @Override
-    public User add(User user) {
+    public User add(final User user) {
         if (this.isExists(user.email())) {
             throw new ResourceAlreadyExistsException(
                     "Email should be unique!"
@@ -43,12 +43,12 @@ public class UqUsers implements Users {
     }
 
     @Override
-    public User update(User user) {
+    public User update(final User user) {
         return this.users.update(user);
     }
 
     @Override
-    public Boolean isExists(String email) {
+    public Boolean isExists(final String email) {
         return this.users.isExists(email);
     }
 

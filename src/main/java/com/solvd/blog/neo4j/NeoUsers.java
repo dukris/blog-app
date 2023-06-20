@@ -69,7 +69,7 @@ public class NeoUsers implements Users {
     }
 
     @Override
-    public Boolean isExists(String email) {
+    public Boolean isExists(final String email) {
         try (Session session = driver.session()) {
             Query query = new Query(
                     "MATCH (user:User{email:$email}) "
