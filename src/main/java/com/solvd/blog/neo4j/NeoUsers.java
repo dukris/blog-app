@@ -1,5 +1,6 @@
 package com.solvd.blog.neo4j;
 
+import com.solvd.blog.mapper.impl.BooleanMapper;
 import com.solvd.blog.mapper.impl.UserMapper;
 import com.solvd.blog.model.User;
 import com.solvd.blog.model.Users;
@@ -17,13 +18,14 @@ import java.util.Map;
 public class NeoUsers implements Users {
 
     private final Driver driver;
-    private final UserMapper mapper;
+    private final UserMapper userMapper;
+    private final BooleanMapper booleanMapper;
 
     @Override
     public List<User> iterate() {
         try (Session session = driver.session()) {
             return session.run("MATCH (user:User) RETURN user")
-                    .list(this.mapper::toEntity);
+                    .list(this.userMapper::toEntity);
         }
     }
 
@@ -34,7 +36,7 @@ public class NeoUsers implements Users {
                     "MATCH (user:User) WHERE ID(user)=$id RETURN user",
                     Map.of("id", id)
             );
-            return this.mapper.toEntity(session.run(query).single());
+            return this.userMapper.toEntity(session.run(query).single());
         }
     }
 
@@ -48,7 +50,7 @@ public class NeoUsers implements Users {
                             "email", user.email()
                     )
             );
-            return this.mapper.toEntity(session.run(query).single());
+            return this.userMapper.toEntity(session.run(query).single());
         }
     }
 
@@ -62,7 +64,19 @@ public class NeoUsers implements Users {
                             "name", user.name()
                     )
             );
-            return this.mapper.toEntity(session.run(query).single());
+            return this.userMapper.toEntity(session.run(query).single());
+        }
+    }
+
+    @Override
+    public Boolean isExists(String email) {
+        try (Session session = driver.session()) {
+            Query query = new Query(
+                    "MATCH (user:User{email:$email}) "
+                            + "RETURN COUNT(user) > 0 as exists",
+                    Map.of("email", email)
+            );
+            return this.booleanMapper.toEntity(session.run(query).single());
         }
     }
 

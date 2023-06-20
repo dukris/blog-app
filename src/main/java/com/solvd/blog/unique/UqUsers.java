@@ -1,15 +1,15 @@
-package com.solvd.blog.neo4j;
+package com.solvd.blog.unique;
 
+import com.solvd.blog.exception.ResourceAlreadyExistsException;
 import com.solvd.blog.model.User;
 import com.solvd.blog.model.Users;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Component
-public class TxUsers implements Users {
+public class UqUsers implements Users {
 
     private final Users users;
 
@@ -18,32 +18,38 @@ public class TxUsers implements Users {
      *
      * @param users Users
      */
-    public TxUsers(@Qualifier("neoUsers") final Users users) {
+    public UqUsers(@Qualifier("txUsers") Users users) {
         this.users = users;
     }
 
     @Override
-    @Transactional(readOnly = true)
     public List<User> iterate() {
         return this.users.iterate();
     }
 
     @Override
-    @Transactional(readOnly = true)
-    public User user(final Long id) {
+    public User user(Long id) {
         return this.users.user(id);
     }
 
     @Override
-    @Transactional
-    public User add(final User user) {
+    public User add(User user) {
+        if (this.isExists(user.email())) {
+            throw new ResourceAlreadyExistsException(
+                    "Email should be unique!"
+            );
+        }
         return this.users.add(user);
     }
 
     @Override
-    @Transactional
-    public User update(final User user) {
+    public User update(User user) {
         return this.users.update(user);
+    }
+
+    @Override
+    public Boolean isExists(String email) {
+        return this.users.isExists(email);
     }
 
 }

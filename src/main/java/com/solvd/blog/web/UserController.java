@@ -36,7 +36,7 @@ public final class UserController {
      * @param posts TxPosts
      */
     public UserController(
-            @Qualifier("txUsers") final Users users,
+            @Qualifier("uqUsers") final Users users,
             @Qualifier("txPosts") final Posts posts
     ) {
         this.users = users;

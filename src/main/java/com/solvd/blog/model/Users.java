@@ -35,4 +35,12 @@ public interface Users {
      */
     User update(User user);
 
+    /**
+     * Is exists by email.
+     *
+     * @param email Email
+     * @return Boolean
+     */
+    Boolean isExists(String email);
+
 }

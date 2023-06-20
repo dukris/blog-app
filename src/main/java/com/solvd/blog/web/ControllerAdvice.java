@@ -2,6 +2,7 @@ package com.solvd.blog.web;
 
 import com.solvd.blog.error.Error;
 import com.solvd.blog.error.JsonError;
+import com.solvd.blog.exception.ResourceAlreadyExistsException;
 import lombok.extern.slf4j.Slf4j;
 import org.neo4j.driver.exceptions.NoSuchRecordException;
 import org.springframework.http.HttpStatus;
@@ -49,6 +50,21 @@ public class ControllerAdvice {
                         )
                 );
         return errors;
+    }
+
+    /**
+     * Method to handle ResourceAlreadyExistsException.
+     *
+     * @param ex ResourceAlreadyExistsException
+     * @return error
+     */
+    @ExceptionHandler(ResourceAlreadyExistsException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public Error handle(
+            final ResourceAlreadyExistsException ex) {
+        return new JsonError(
+                ex.getMessage()
+        );
     }
 
     /**

@@ -1,4 +1,4 @@
-package com.solvd.blog.neo4j;
+package com.solvd.blog.tx;
 
 import com.solvd.blog.model.Post;
 import com.solvd.blog.model.Posts;
