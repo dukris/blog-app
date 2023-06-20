@@ -30,8 +30,7 @@ public class Neo4jIntegration {
              Session session = driver.session()) {
             User user = new FkUser("Name");
             Query query = new Query(
-                    "CREATE (user:User {name:$name, email:$email}) "
-                            + "RETURN user",
+                    "CREATE (user:User {name:$name, email:$email})",
                     Map.of("name", user.name(),
                             "email", user.email()
                     )
