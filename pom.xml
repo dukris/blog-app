@@ -19,8 +19,8 @@
     <com.jcabi.version>0.27.2</com.jcabi.version>
     <org.jacoco.version>0.8.10</org.jacoco.version>
     <failsafe.version>3.1.2</failsafe.version>
-    <eo-rs.version>0.0.1</eo-rs.version>
     <jtcop.version>0.1.14</jtcop.version>
+    <testcontainers.version>1.18.3</testcontainers.version>
   </properties>
   <dependencies>
     <dependency>
@@ -46,13 +46,14 @@
       <version>${jakarta-persistence.version}</version>
     </dependency>
     <dependency>
-      <groupId>io.github.eo-cqrs</groupId>
-      <artifactId>eo-rs</artifactId>
-      <version>${eo-rs.version}</version>
-    </dependency>
-    <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.testcontainers</groupId>
+      <artifactId>neo4j</artifactId>
+      <version>${testcontainers.version}</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
