@@ -1,6 +1,6 @@
 ## Blog App
 
-[![DevOps By Rultor.com](https://www.rultor.com/b/hizmailovich/northview-data-warehouse)](https://www.rultor.com/p/hizmailovich/northview-data-warehouse)
+[![DevOps By Rultor.com](https://www.rultor.com/b/hizmailovich/blog-app)](https://www.rultor.com/p/hizmailovich/northview-data-warehouse)
 <br>
 
 [![maven](https://github.com/hizmailovich/blog-app/actions/workflows/maven.yml/badge.svg)](https://github.com/hizmailovich/blog-app/actions/workflows/maven.yml)
@@ -35,7 +35,3 @@ $ mvn clean install
 ```
 
 You will need Maven 3.8.7+ and Java 17+.
-
-If you want to contribute to the next release version of `northviewetl`, please check the [project board](https://letsrally.atlassian.net/jira/software/projects/NVEDW/boards/4).
-
-Our [rultor image](https://github.com/eo-cqrs/eo-kafka-rultor-image) for CI/CD.
