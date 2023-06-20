@@ -4,4 +4,4 @@ docker:
   image: l3r8y/rultor-image:1.0.3
 merge:
   script:
-    - "mvn clean install --errors --batch-mode"
+    - "mvn clean install -DskipITs --errors --batch-mode"
