@@ -11,9 +11,9 @@ import java.util.List;
 public class FkUser implements User {
 
     private static final Long ID = 0L;
-    private static final String EMAIL = "Email";
     private static final List<Post> POSTS = new ArrayList<>();
-    private final String name;
+    private static final String NAME = "Name";
+    private final String email;
 
     @Override
     public Long id() {
@@ -22,12 +22,12 @@ public class FkUser implements User {
 
     @Override
     public String name() {
-        return this.name;
+        return NAME;
     }
 
     @Override
     public String email() {
-        return EMAIL;
+        return this.email;
     }
 
     @Override
