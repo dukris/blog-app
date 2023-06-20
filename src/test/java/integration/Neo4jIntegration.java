@@ -19,14 +19,14 @@ import java.util.Map;
 @SpringBootTest(classes = BlogApplication.class)
 public class Neo4jIntegration {
 
-    protected static final Neo4jContainer CONTAINER = new Neo4jContainer(
+    protected static final Neo4jContainer container = new Neo4jContainer(
             DockerImageName.parse("neo4j:5.9.0")
     ).withoutAuthentication();
 
     @BeforeAll
     public static void init() {
-        CONTAINER.start();
-        try (Driver driver = GraphDatabase.driver(CONTAINER.getBoltUrl());
+        container.start();
+        try (Driver driver = GraphDatabase.driver(container.getBoltUrl());
              Session session = driver.session()) {
             User user = new FkUser("Name");
             Query query = new Query(
@@ -41,7 +41,7 @@ public class Neo4jIntegration {
 
     @AfterAll
     public static void stop() {
-        CONTAINER.stop();
+        container.stop();
     }
 
 }

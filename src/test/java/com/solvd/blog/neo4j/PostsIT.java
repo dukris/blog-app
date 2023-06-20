@@ -25,7 +25,7 @@ public class PostsIT extends Neo4jIntegration {
         new PropertyOf(
                 registry,
                 "spring.neo4j.uri",
-                CONTAINER.getBoltUrl()
+                container.getBoltUrl()
         ).set();
     }
 
