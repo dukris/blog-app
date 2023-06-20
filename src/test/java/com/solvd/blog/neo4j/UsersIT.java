@@ -78,7 +78,7 @@ public class UsersIT extends Neo4jIntegration {
     @Test
     public void verifiesIsExists() {
         Assertions.assertTrue(
-                this.users.isExists("Email")
+                this.users.exists("Email")
         );
     }
 

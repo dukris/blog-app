@@ -34,7 +34,7 @@ public class UqUsers implements Users {
 
     @Override
     public User add(final User user) {
-        if (this.isExists(user.email())) {
+        if (this.exists(user.email())) {
             throw new ResourceAlreadyExistsException(
                     "Email should be unique!"
             );
@@ -48,8 +48,8 @@ public class UqUsers implements Users {
     }
 
     @Override
-    public Boolean isExists(final String email) {
-        return this.users.isExists(email);
+    public Boolean exists(final String email) {
+        return this.users.exists(email);
     }
 
 }

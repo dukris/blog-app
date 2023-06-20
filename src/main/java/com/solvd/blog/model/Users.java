@@ -41,6 +41,6 @@ public interface Users {
      * @param email Email
      * @return Boolean
      */
-    Boolean isExists(String email);
+    Boolean exists(String email);
 
 }
