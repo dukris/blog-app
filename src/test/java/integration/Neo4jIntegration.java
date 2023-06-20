@@ -1,7 +1,9 @@
 package integration;
 
 import com.solvd.blog.BlogApplication;
+import com.solvd.blog.fake.FkPost;
 import com.solvd.blog.fake.FkUser;
+import com.solvd.blog.model.Post;
 import com.solvd.blog.model.User;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -26,13 +28,23 @@ public class Neo4jIntegration {
     @BeforeAll
     public static void init() {
         container.start();
+    }
+
+    @BeforeAll
+    public static void setUp() {
         try (Driver driver = GraphDatabase.driver(container.getBoltUrl());
              Session session = driver.session()) {
             User user = new FkUser("Name", "Email");
+            Post post = new FkPost();
             Query query = new Query(
-                    "CREATE (user:User {name:$name, email:$email})",
+                    "CREATE (u:User {name:$name, email:$email}) "
+                            + "CREATE (p:Post {title:$title, content:$content, date:$date}) "
+                            + "CREATE (p)-[:MAINTAINED]->(u)",
                     Map.of("name", user.name(),
-                            "email", user.email()
+                            "email", user.email(),
+                            "title", post.title(),
+                            "content", post.content(),
+                            "date", post.date()
                     )
             );
             session.run(query);
