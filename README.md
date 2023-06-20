@@ -1,6 +1,6 @@
 ## Blog App
 
-[![DevOps By Rultor.com](https://www.rultor.com/b/hizmailovich/blog-app)](https://www.rultor.com/p/hizmailovich/northview-data-warehouse)
+[![DevOps By Rultor.com](https://www.rultor.com/b/hizmailovich/blog-app)](https://www.rultor.com/p/hizmailovich/blog-app)
 <br>
 
 [![maven](https://github.com/hizmailovich/blog-app/actions/workflows/maven.yml/badge.svg)](https://github.com/hizmailovich/blog-app/actions/workflows/maven.yml)
