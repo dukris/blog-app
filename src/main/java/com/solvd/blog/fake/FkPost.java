@@ -6,7 +6,7 @@ import java.time.LocalDate;
 
 public class FkPost implements Post {
 
-    private static final Long ID = 0L;
+    private static final Long ID = 1L;
     private static final String TITLE = "Title";
     private static final String CONTENT = "Content";
     private static final LocalDate DATE = LocalDate.now();

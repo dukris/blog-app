@@ -31,19 +31,17 @@ public class PostsIT extends Neo4jIntegration {
 
     @Test
     public void verifiesIterate(){
-        this.posts.add(new FkPost(), 0L);
         Assertions.assertNotNull(this.posts.iterate());
     }
 
     @Test
     public void verifiesIterateByUserId(){
-        this.posts.add(new FkPost(), 0L);
         Assertions.assertNotNull(this.posts.iterate(0L));
     }
 
     @Test
     public void verifiesPost(){
-        Post post = this.posts.add(new FkPost(), 0L);
+        Post post = new FkPost();
         Post result = this.posts.post(post.id());
         Assertions.assertEquals(post.title(), result.title());
         Assertions.assertEquals(post.content(), result.content());
