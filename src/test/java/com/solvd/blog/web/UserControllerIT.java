@@ -122,4 +122,26 @@ public class UserControllerIT extends Neo4jIntegration {
         ).andExpect(MockMvcResultMatchers.status().isBadRequest());
     }
 
+    @Test
+    public void verifiesAddPost()
+            throws Exception {
+        this.mockMvc.perform(MockMvcRequestBuilders.post(URL + "/0/posts")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("""
+                        {
+                          "title" : "Title",
+                          "content" : "Content"
+                        }
+                        """
+                )
+        ).andExpect(MockMvcResultMatchers.status().isOk());
+    }
+
+    @Test
+    public void verifiesPosts()
+            throws Exception {
+        this.mockMvc.perform(MockMvcRequestBuilders.get(URL + "/0/posts"))
+                .andExpect(MockMvcResultMatchers.status().isOk());
+    }
+
 }
