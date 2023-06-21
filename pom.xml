@@ -19,6 +19,7 @@
     <com.jcabi.version>0.27.2</com.jcabi.version>
     <org.jacoco.version>0.8.10</org.jacoco.version>
     <failsafe.version>3.1.2</failsafe.version>
+    <jtcop.version>0.1.14</jtcop.version>
     <testcontainers.version>1.18.3</testcontainers.version>
   </properties>
   <dependencies>
@@ -142,6 +143,18 @@
                 </rule>
               </rules>
             </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>com.github.volodya-lombrozo</groupId>
+        <artifactId>jtcop-maven-plugin</artifactId>
+        <version>${jtcop.version}</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>check</goal>
+            </goals>
           </execution>
         </executions>
       </plugin>

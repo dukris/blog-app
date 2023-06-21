@@ -12,6 +12,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 @AutoConfigureMockMvc
+@SuppressWarnings("JTCOP.RuleAllTestsHaveProductionClass")
 public class PostControllerIT extends Neo4jIntegration {
 
     private static final String URL = "/api/v1/posts";

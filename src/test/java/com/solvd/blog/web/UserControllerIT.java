@@ -13,6 +13,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 @AutoConfigureMockMvc
+@SuppressWarnings("JTCOP.RuleAllTestsHaveProductionClass")
 public class UserControllerIT extends Neo4jIntegration {
 
     private static final String URL = "/api/v1/users";
@@ -51,12 +52,10 @@ public class UserControllerIT extends Neo4jIntegration {
     public void verifiesCreate() throws Exception {
         this.mockMvc.perform(MockMvcRequestBuilders.post(URL)
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("""
-                        {
-                          "name" : "Name",
-                          "email" : "Test email"
-                        }
-                        """
+                .content("{"
+                        + "\"name\" : \"Name\","
+                        + "\"email\" : \"Test email\""
+                        + "}"
                 )
         ).andExpect(MockMvcResultMatchers.status().isCreated());
     }
@@ -66,12 +65,10 @@ public class UserControllerIT extends Neo4jIntegration {
             throws Exception {
         this.mockMvc.perform(MockMvcRequestBuilders.post(URL)
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("""
-                        {
-                          "name" : "Name",
-                          "email" : "Email"
-                        }
-                        """
+                .content("{"
+                        + "\"name\" : \"Name\","
+                        + "\"email\" : \"Email\""
+                        + "}"
                 )
         ).andExpect(MockMvcResultMatchers.status().isBadRequest());
     }
@@ -81,13 +78,11 @@ public class UserControllerIT extends Neo4jIntegration {
             throws Exception {
         this.mockMvc.perform(MockMvcRequestBuilders.post(URL)
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("""
-                        {
-                          "id" : 0,
-                          "name" : "Name",
-                          "email" : "Email"
-                        }
-                        """
+                .content("{"
+                        + "\"id\" : 0,"
+                        + "\"name\" : \"Name\","
+                        + "\"email\" : \"Email\""
+                        + "}"
                 )
         ).andExpect(MockMvcResultMatchers.status().isBadRequest());
     }
@@ -96,13 +91,11 @@ public class UserControllerIT extends Neo4jIntegration {
     public void verifiesUpdate() throws Exception {
         this.mockMvc.perform(MockMvcRequestBuilders.put(URL + "/0")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("""
-                        {
-                          "id" : 0,
-                          "name" : "Name",
-                          "email" : "Email"
-                        }
-                        """
+                .content("{"
+                        + "\"id\" : 0,"
+                        + "\"name\" : \"Name\","
+                        + "\"email\" : \"Email\""
+                        + "}"
                 )
         ).andExpect(MockMvcResultMatchers.status().isOk());
     }
@@ -112,12 +105,10 @@ public class UserControllerIT extends Neo4jIntegration {
             throws Exception {
         this.mockMvc.perform(MockMvcRequestBuilders.put(URL + "/0")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("""
-                        {
-                          "name" : "Name",
-                          "email" : "Email"
-                        }
-                        """
+                .content("{"
+                        + "\"name\" : \"Name\","
+                        + "\"email\" : \"Email\""
+                        + "}"
                 )
         ).andExpect(MockMvcResultMatchers.status().isBadRequest());
     }
@@ -127,12 +118,10 @@ public class UserControllerIT extends Neo4jIntegration {
             throws Exception {
         this.mockMvc.perform(MockMvcRequestBuilders.post(URL + "/0/posts")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("""
-                        {
-                          "title" : "Title",
-                          "content" : "Content"
-                        }
-                        """
+                .content("{"
+                        + "\"title\" : \"Title\","
+                        + "\"content\" : \"Content\""
+                        + "}"
                 )
         ).andExpect(MockMvcResultMatchers.status().isOk());
     }

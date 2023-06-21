@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 
+@SuppressWarnings("JTCOP.RuleAllTestsHaveProductionClass")
 public class PostsIT extends Neo4jIntegration {
 
     @Autowired
