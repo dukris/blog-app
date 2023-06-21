@@ -19,7 +19,7 @@ import java.util.Map;
  */
 @Component
 @RequiredArgsConstructor
-public class NeoPosts implements Posts {
+public class NjPosts implements Posts {
 
     private final Driver driver;
     private final PostMapper mapper;

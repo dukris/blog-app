@@ -15,7 +15,7 @@ import java.util.Map;
 
 @Component
 @RequiredArgsConstructor
-public class NeoUsers implements Users {
+public class NjUsers implements Users {
 
     private final Driver driver;
     private final UserMapper userMapper;

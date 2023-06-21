@@ -1,4 +1,4 @@
-package com.solvd.blog.tx;
+package com.solvd.blog.transaction;
 
 import com.solvd.blog.model.Post;
 import com.solvd.blog.model.Posts;
@@ -22,7 +22,7 @@ public class TxPosts implements Posts {
      *
      * @param posts Posts
      */
-    public TxPosts(@Qualifier("neoPosts") final Posts posts) {
+    public TxPosts(@Qualifier("njPosts") final Posts posts) {
         this.posts = posts;
     }
 

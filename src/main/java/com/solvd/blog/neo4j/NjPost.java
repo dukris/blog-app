@@ -9,7 +9,7 @@ import java.time.LocalDate;
 
 @AllArgsConstructor
 @JsonSerialize(using = PostSerializer.class)
-public final class NeoPost implements Post {
+public final class NjPost implements Post {
 
     private final Long id;
     private final String title;

@@ -3,15 +3,15 @@ package com.solvd.blog.serializer;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
-import com.solvd.blog.neo4j.NeoUser;
+import com.solvd.blog.neo4j.NjUser;
 
 import java.io.IOException;
 
-public class UserSerializer extends JsonSerializer<NeoUser> {
+public class UserSerializer extends JsonSerializer<NjUser> {
 
     @Override
     public void serialize(
-            final NeoUser value,
+            final NjUser value,
             final JsonGenerator gen,
             final SerializerProvider serializers
     ) throws IOException {

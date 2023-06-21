@@ -10,7 +10,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @JsonSerialize(using = UserSerializer.class)
-public final class NeoUser implements User {
+public final class NjUser implements User {
 
     private final Long id;
     private final String name;

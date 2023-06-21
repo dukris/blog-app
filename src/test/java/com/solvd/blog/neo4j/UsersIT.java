@@ -18,7 +18,7 @@ import org.springframework.test.context.DynamicPropertySource;
 public class UsersIT extends Neo4jIntegration {
 
     @Autowired
-    @Qualifier("uqUsers")
+    @Qualifier("vdUsers")
     private Users users;
 
     @DynamicPropertySource
