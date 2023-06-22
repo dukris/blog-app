@@ -1,4 +1,4 @@
-package com.solvd.blog.neo4j;
+package com.solvd.blog.transaction;
 
 import com.solvd.blog.fake.FkPost;
 import com.solvd.blog.model.Post;
