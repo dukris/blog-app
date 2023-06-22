@@ -30,37 +30,60 @@ public class PostsIT extends Neo4jIntegration {
     }
 
     @Test
-    public void verifiesIterate(){
-        Assertions.assertNotNull(this.posts.iterate());
+    public void verifiesIterate() {
+        Assertions.assertNotNull(
+                this.posts.iterate(),
+                "List of posts is empty"
+        );
     }
 
     @Test
-    public void verifiesIterateByUserId(){
-        Assertions.assertNotNull(this.posts.iterate(0L));
+    public void verifiesIterateByUserId() {
+        Assertions.assertNotNull(
+                this.posts.iterate(0L),
+                "List of posts is empty"
+        );
     }
 
     @Test
-    public void verifiesPost(){
+    public void verifiesPost() {
         Post post = new FkPost();
         Post result = this.posts.post(post.id());
-        Assertions.assertEquals(post.title(), result.title());
-        Assertions.assertEquals(post.content(), result.content());
+        Assertions.assertEquals(
+                post.title(),
+                result.title(),
+                "Titles are not equal"
+        );
+        Assertions.assertEquals(
+                post.content(),
+                result.content(),
+                "Contents are not equal"
+        );
     }
 
     @Test
     public void verifiesPostThrowsNoSuchRecordException() {
         Assertions.assertThrows(
                 NoSuchRecordException.class,
-                () -> this.posts.post(5L)
+                () -> this.posts.post(5L),
+                "Expected NoSuchRecordException"
         );
     }
 
     @Test
-    public void verifiesAdd(){
+    public void verifiesAdd() {
         Post post = new FkPost();
         Post result = this.posts.add(post, 0L);
-        Assertions.assertEquals(post.title(), result.title());
-        Assertions.assertEquals(post.content(), result.content());
+        Assertions.assertEquals(
+                post.title(),
+                result.title(),
+                "Titles are not equal"
+        );
+        Assertions.assertEquals(
+                post.content(),
+                result.content(),
+                "Contents are not equal"
+        );
     }
 
 }

@@ -31,22 +31,34 @@ public class UsersIT extends Neo4jIntegration {
 
     @Test
     public void verifiesIterate() {
-        Assertions.assertNotNull(this.users.iterate());
+        Assertions.assertNotNull(
+                this.users.iterate(),
+                "List of users is empty"
+        );
     }
 
     @Test
     public void verifiesUser() {
         User user = new FkUser("Name", "Email");
         User result = this.users.user(user.id());
-        Assertions.assertEquals(user.name(), result.name());
-        Assertions.assertEquals(user.email(), result.email());
+        Assertions.assertEquals(
+                user.name(),
+                result.name(),
+                "Names are not equal"
+        );
+        Assertions.assertEquals(
+                user.email(),
+                result.email(),
+                "Emails are not equal"
+        );
     }
 
     @Test
     public void verifiesUserThrowsNoSuchRecordException() {
         Assertions.assertThrows(
                 NoSuchRecordException.class,
-                () -> this.users.user(5L)
+                () -> this.users.user(5L),
+                "Expected NoSuchRecordException"
         );
     }
 
@@ -54,22 +66,39 @@ public class UsersIT extends Neo4jIntegration {
     public void verifiesAdd() {
         User user = new FkUser("Name", "New email");
         User result = this.users.add(user);
-        Assertions.assertEquals(user.name(), result.name());
-        Assertions.assertEquals(user.email(), result.email());
+        Assertions.assertEquals(
+                user.name(),
+                result.name(),
+                "Names are not equal"
+        );
+        Assertions.assertEquals(
+                user.email(),
+                result.email(),
+                "Emails are not equal"
+        );
     }
 
     @Test
     public void verifiesUpdate() {
-        User expected = new FkUser("Updated name", "Email");
-        User result = this.users.update(expected);
-        Assertions.assertEquals(expected.name(), result.name());
-        Assertions.assertEquals(expected.email(), result.email());
+        User user = new FkUser("Updated name", "Email");
+        User result = this.users.update(user);
+        Assertions.assertEquals(
+                user.name(),
+                result.name(),
+                "Names are not equal"
+        );
+        Assertions.assertEquals(
+                user.email(),
+                result.email(),
+                "Emails are not equal"
+        );
     }
 
     @Test
     public void verifiesExists() {
         Assertions.assertTrue(
-                this.users.exists("Email")
+                this.users.exists("Email"),
+                "This email doesn't exist"
         );
     }
 

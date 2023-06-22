@@ -28,7 +28,7 @@ public class UsersTest {
         Mockito.when(this.users.iterate())
                 .thenReturn(List.of(new FkUser("Name", "Email")));
         List<User> result = this.vdUsers.iterate();
-        Assertions.assertNotNull(result);
+        Assertions.assertNotNull(result, "List of users is empty");
         Mockito.verify(this.users, Mockito.times(1))
                 .iterate();
     }
@@ -39,8 +39,16 @@ public class UsersTest {
         Mockito.when(this.users.user(user.id()))
                 .thenReturn(user);
         User result = this.vdUsers.user(user.id());
-        Assertions.assertEquals(user.name(), result.name());
-        Assertions.assertEquals(user.email(), result.email());
+        Assertions.assertEquals(
+                user.name(),
+                result.name(),
+                "Names are not equal"
+        );
+        Assertions.assertEquals(
+                user.email(),
+                result.email(),
+                "Emails are not equal"
+        );
         Mockito.verify(this.users, Mockito.times(1))
                 .user(user.id());
     }
@@ -51,8 +59,16 @@ public class UsersTest {
         Mockito.when(this.users.add(user))
                 .thenReturn(user);
         User result = this.vdUsers.add(user);
-        Assertions.assertEquals(user.name(), result.name());
-        Assertions.assertEquals(user.email(), result.email());
+        Assertions.assertEquals(
+                user.name(),
+                result.name(),
+                "Names are not equal"
+        );
+        Assertions.assertEquals(
+                user.email(),
+                result.email(),
+                "Emails are not equal"
+        );
         Mockito.verify(this.users, Mockito.times(1))
                 .add(user);
     }
@@ -64,7 +80,8 @@ public class UsersTest {
                 .thenReturn(true);
         Assertions.assertThrows(
                 ResourceAlreadyExistsException.class,
-                () -> this.vdUsers.add(user)
+                () -> this.vdUsers.add(user),
+                "Expected NoSuchRecordException"
         );
         Mockito.verify(this.users, Mockito.times(1))
                 .exists(user.email());
@@ -72,14 +89,22 @@ public class UsersTest {
 
     @Test
     public void verifiesUpdate() {
-        User expected = new FkUser("Updated name", "Email");
-        Mockito.when(this.users.update(expected))
-                .thenReturn(expected);
-        User result = this.vdUsers.update(expected);
-        Assertions.assertEquals(expected.name(), result.name());
-        Assertions.assertEquals(expected.email(), result.email());
+        User user = new FkUser("Updated name", "Email");
+        Mockito.when(this.users.update(user))
+                .thenReturn(user);
+        User result = this.vdUsers.update(user);
+        Assertions.assertEquals(
+                user.name(),
+                result.name(),
+                "Names are not equal"
+        );
+        Assertions.assertEquals(
+                user.email(),
+                result.email(),
+                "Emails are not equal"
+        );
         Mockito.verify(this.users, Mockito.times(1))
-                .update(expected);
+                .update(user);
     }
 
     @Test
@@ -87,7 +112,8 @@ public class UsersTest {
         Mockito.when(this.users.exists("Email"))
                 .thenReturn(true);
         Assertions.assertTrue(
-                this.users.exists("Email")
+                this.users.exists("Email"),
+                "This email doesn't exist"
         );
         Mockito.verify(this.users, Mockito.times(1))
                 .exists("Email");

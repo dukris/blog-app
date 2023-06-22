@@ -13,7 +13,10 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 @AutoConfigureMockMvc
-@SuppressWarnings("JTCOP.RuleAllTestsHaveProductionClass")
+@SuppressWarnings({
+        "JTCOP.RuleAllTestsHaveProductionClass",
+        "JTCOP.RuleAssertionMessage"
+})
 public class UserControllerIT extends Neo4jIntegration {
 
     private static final String URL = "/api/v1/users";
